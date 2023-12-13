@@ -7,67 +7,88 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useEffect } from "react";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    if (typeof localStorage !== 'undefined') {
+      const storedTodos = localStorage.getItem('todos');
+      return storedTodos !== null ? JSON.parse(storedTodos) : [];
+    } else {
+      return [];
+    }
+  });
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
 
   const addTodo = (text) => {
     if (text) {
-      const newTodo = {
-        text,
-        complete: false,
-        id: uuid()
-      };
-      setTodos([
-        ...todos,
-        newTodo
-      ]);
+      // const newTodo = {
+      //   text,
+      //   complete: false,
+      //   id: uuid()
+      // };
+      // setTodos([
+      //   ...todos,
+      //   newTodo
+      // ]);
+      setTodos(currentTodos => {
+        return [
+          ...currentTodos,
+          {
+            text,
+            complete: false,
+            id: uuid()
+          }
+        ]
+      })
     }
   }
 
   const toggleTodo = (id) => {
-    const newTodos = todos.map(todo => {
-      if (todo.id === id) {
-        todo.complete = !todo.complete;
-      }
-      return todo;
+    // const newTodos = todos.map(todo => {
+    //   if (todo.id === id) {
+    //     todo.complete = !todo.complete;
+    //   }
+    //   return todo;
+    // });
+    // setTodos(newTodos);
+    setTodos(currentTodos => {
+      return currentTodos.map(todo => {
+        if (todo.id === id) {
+          todo.complete = !todo.complete;
+        }
+        return todo;
+      })
     });
-    setTodos(newTodos);
   }
 
   const removeTodo = (id) => {
-    const newTodos = todos.filter(todo => todo.id !== id);
-    setTodos(newTodos);
+    // const newTodos = todos.filter(todo => todo.id !== id);
+    // setTodos(newTodos);
+    setTodos(currentTodos => {
+      return currentTodos.filter(todo => todo.id !== id);
+    });
   }
 
   let filteredTodos = todos;
 
   if (searchQuery) {
     filteredTodos = filteredTodos.filter(todo => {
-      if (todo.text.includes(searchQuery)) {
+      if (todo.text.includes(searchQuery.toLowerCase())) {
         return todo;
       }
     });
   }
 
   useEffect(() => {
-    if (typeof localStorage !== 'undefined') {
-      if (loading) {
-        let storedTodos = localStorage.getItem('todos');
-        if (storedTodos) {
-          storedTodos = JSON.parse(storedTodos);
-          setTodos(storedTodos);
-        }
-        setTimeout(function () {
-          setLoading(false);
-        }, 1000);
-      } else {
-        localStorage.setItem('todos', JSON.stringify(todos));
-      }
-    } else {
+    if (loading) {
       setTimeout(function () {
         setLoading(false);
       }, 1000);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('todos', JSON.stringify(todos));
     }
   }, [todos]);
 
