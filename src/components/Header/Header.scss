@@ -1,0 +1,79 @@
+@import "../../global/styles/variables";
+
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: #fff;
+    box-shadow: 0 0 13px 0 rgba(0,0,0,0.1);
+    .logo {
+        display: flex;
+        align-items: center;
+        width: 20%;
+        gap: 10px;
+        img {
+            max-width: 30px;
+            max-height: 30px;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 0;
+            color: $dark;
+            @media (max-width: 768px) {
+                display: none;
+            }
+        }
+    }
+    .search {
+        display: flex;
+        flex-grow: 1;
+        padding: 10px 15px;
+        max-width: 600px;
+        background: rgba(#999, 0.15);
+        border-radius: 8px;
+        input {
+            font-size: 14px;
+            width: 100%;
+            border: 0;
+            background: none;
+            &:focus {
+                outline: 0;
+            }
+        }
+        svg {
+            font-size: 20px;
+        }
+        &:focus-within {
+            background: #fff;
+            box-shadow: 0 0 0 2px $dark;
+            input {
+                &::placeholder {
+                    font-size: 0;
+                }
+            }
+        }
+    }
+    .user {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 20%;
+        button {
+            cursor: pointer;
+            color: $dark;
+            border: none;
+            background: none;
+            padding: 0;
+            border-radius: 50px;
+            margin: 0;
+            width: 30px;
+            height: 30px;
+            line-height: 35px;
+            &:hover {
+                color: #fff;
+                background-color: $dark;
+            }
+        }
+    }
+}

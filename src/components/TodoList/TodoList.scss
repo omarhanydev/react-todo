@@ -1,0 +1,14 @@
+@import "../../global/styles/variables";
+
+.todo-list {
+    padding: 25px 15px 20px;
+    position: relative;
+    top: -5px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    background: #fff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

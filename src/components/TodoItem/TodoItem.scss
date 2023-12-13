@@ -1,0 +1,82 @@
+@import "../../global/styles/variables";
+
+.todo-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 15px;
+    gap: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #fff;
+    &:hover {
+        background-color: #f0f0f0;
+    }
+    input[type="checkbox"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: #fff;
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        border: 0.15em solid currentColor;
+        border-radius: 0.15em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        &::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+            transform: scale(0);
+            transform-origin: bottom left;
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em #fff;
+            background-color: $dark;
+        }
+        &:checked {
+            background: $dark;
+            &::before {
+                transform: scale(1);
+            }
+        }
+        &:focus {
+            outline: max(2px, 0.15em) solid $dark;
+            outline-offset: max(2px, 0.15em);
+        }
+        &:disabled {
+            color: #333;
+            cursor: not-allowed;
+        }
+        &:checked + span {
+            text-decoration: line-through;
+        }
+    }
+    button {
+        border: 0;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+        line-height: 1;
+        svg {
+            font-size: 24px;
+            color: #C1121F;
+        }
+        span.hover {
+            display: none;
+        }
+        &:hover {
+            span:not(.hover) {
+                display: none;
+            }
+            span.hover {
+                display: inline-block;
+            }
+        }
+    }
+}
