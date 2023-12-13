@@ -11,4 +11,12 @@
     background: #fff;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    &.searching {
+        padding: 20px 15px;
+        top: 0;
+        box-shadow: 0 0 13px 0 rgba(0,0,0,0.1);
+        h6 {
+            margin: 0;
+        }
+    }
 }

@@ -34,7 +34,9 @@
         span.hover {
             display: none;
         }
-        &:hover {
+        &:hover,
+        &:focus {
+            outline: none;
             span:not(.hover) {
                 display: none;
             }
