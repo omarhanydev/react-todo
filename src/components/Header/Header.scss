@@ -70,7 +70,9 @@
             width: 30px;
             height: 30px;
             line-height: 35px;
-            &:hover {
+            &:hover,
+            &:focus {
+                outline: none;
                 color: #fff;
                 background-color: $dark;
             }
