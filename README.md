@@ -1,8 +1,11 @@
-# React + Vite
+# React Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This Web-App created with variety of tools React, Redux Toolkit, Storing data in Local storage
 
-Currently, two official plugins are available:
+[Demo](https://omar-todos.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Branches:
+
+- use-redux-toolkit & main -> implement state management with Redux Toolkit.
+- use-context -> implement state management with React Context API.
+- use-state -> implement state management with basic use-state hook.
