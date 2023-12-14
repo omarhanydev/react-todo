@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { useState } from "react";
 import { AiFillPlusCircle, AiOutlinePlusCircle } from "react-icons/ai";
+import { TodosContext } from "../../context";
 import "./AddTodo.scss";
 
-export default function AddTodo({ addTodo }) {
+export default function AddTodo() {
+    const { addTodo } = useContext(TodosContext);
     const [text, setText] = useState('');
 
     const handleAddTodo = () => {

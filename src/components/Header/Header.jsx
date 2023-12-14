@@ -1,8 +1,11 @@
+import { useContext } from "react";
+import { TodosContext } from "../../context";
 import { AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
 import Logo from '/img/logo.svg'
 import './Header.scss'
 
-function Header({ loading, searchQuery, setSearchQuery }) {
+function Header() {
+  const { loading, searchQuery, setSearchQuery } = useContext(TodosContext);
   return (
     <header className='main-header'>
       <div className="logo">
