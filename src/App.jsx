@@ -5,6 +5,7 @@ import TodoList from "./components/TodoList/TodoList"
 import { v4 as uuid } from 'uuid';
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useEffect } from "react";
+import { TodosContext } from './context';
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -68,16 +69,6 @@ function App() {
     });
   }
 
-  let filteredTodos = todos;
-
-  if (searchQuery) {
-    filteredTodos = filteredTodos.filter(todo => {
-      if (todo.text.includes(searchQuery.toLowerCase())) {
-        return todo;
-      }
-    });
-  }
-
   useEffect(() => {
     if (loading) {
       setTimeout(function () {
@@ -93,19 +84,19 @@ function App() {
   }, [todos]);
 
   return (
-    <>
-      <Header loading={loading} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+    <TodosContext.Provider value={{ loading, searchQuery, setSearchQuery, todos, addTodo, toggleTodo, removeTodo }}>
+      <Header />
       <div className="container">
         {loading ?
           <div className="loading-spinner"><AiOutlineLoading3Quarters /></div> : (
             <>
-            {!searchQuery && <AddTodo addTodo={addTodo} />}
-            <TodoList searchQuery={searchQuery} todos={filteredTodos} toggleTodo={toggleTodo} removeTodo={removeTodo} />
+              {!searchQuery && <AddTodo />}
+              <TodoList />
             </>
           )
         }
       </div>
-    </>
+    </TodosContext.Provider>
   )
 }
 
