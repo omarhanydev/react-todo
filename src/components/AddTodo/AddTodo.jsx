@@ -1,15 +1,15 @@
-import { useContext } from "react";
 import { useState } from "react";
 import { AiFillPlusCircle, AiOutlinePlusCircle } from "react-icons/ai";
-import { TodosContext } from "../../context";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../../store/todosSlice";
 import "./AddTodo.scss";
 
 export default function AddTodo() {
-    const { addTodo } = useContext(TodosContext);
+    const dispatch = useDispatch();
     const [text, setText] = useState('');
 
     const handleAddTodo = () => {
-        addTodo(text);
+        dispatch(addTodo(text));
         setText('');
     }
 

@@ -1,11 +1,13 @@
-import { useContext } from "react";
-import { TodosContext } from "../../context";
+import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
+import { setSearchQuery } from "../../store/todosSlice";
 import Logo from '/img/logo.svg'
 import './Header.scss'
 
 function Header() {
-  const { loading, searchQuery, setSearchQuery } = useContext(TodosContext);
+  const { loading, searchQuery } = useSelector(state => state.todos);
+  const dispatch = useDispatch();
+
   return (
     <header className='main-header'>
       <div className="logo">
@@ -15,7 +17,7 @@ function Header() {
       {!loading && 
         <>
           <label className="search">
-            <input type="text" placeholder="Search..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
+            <input type="text" placeholder="Search..." value={searchQuery} onChange={e => dispatch(setSearchQuery(e.target.value))} />
             <AiOutlineSearch />
           </label>
           <div className="user">
